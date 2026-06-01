@@ -6,20 +6,24 @@
 # MAC / LINUX
 # ══════════════════════════════════════════════════════════════════════════════
 #
-# Run these commands in your terminal — they append each variable permanently
-# to your shell profile and reload it in one step.
-#
+# Step 1 — Run these commands to permanently append variables to your profile.
 # zsh (default on Mac):
 
 echo 'export BASE_URL=http://localhost:3000' >> ~/.zshrc
 echo 'export TEST_EMAIL=demo@techshop.com' >> ~/.zshrc
 echo 'export TEST_PASSWORD=password123' >> ~/.zshrc
 echo 'export POSTMAN_API_KEY=' >> ~/.zshrc   # fill in the value after Postman setup in Section 5
-source ~/.zshrc
 
-# bash (Linux / some Mac setups) — replace ~/.zshrc with ~/.bashrc above
+# bash (Linux / some Mac setups) — replace ~/.zshrc with ~/.bashrc in all lines above
 
-# Verify — each command should print the value back:
+# Step 2 — REQUIRED: reload the profile in the current terminal session.
+# The variables are written to the file but the current session does not
+# know about them yet until you run this:
+
+source ~/.zshrc     # or source ~/.bashrc for bash users
+
+# Step 3 — Verify each variable prints its value:
+
 echo $BASE_URL
 echo $TEST_EMAIL
 echo $TEST_PASSWORD
