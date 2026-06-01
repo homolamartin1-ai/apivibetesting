@@ -58,17 +58,15 @@ Based on these files:
 *Used in: Section 5, Clip 5 — "Newman CLI"*
 
 ```
-First, check if the TechShop API is running on localhost:3000:
-  curl -s http://localhost:3000/health
-If you get a connection error — start it:
-  cd techshop-api/broken-app && npm start &
-Wait 3 seconds, then verify: curl -s http://localhost:3000/health
-If it still fails, stop and tell me.
+Use the Postman MCP to fetch the TechShop API Tests collection from my
+Postman workspace and save it as techshop.postman_collection.json in the
+project root.
 
-Once the server is confirmed running:
-
-Export the TechShop API Tests collection from Postman as
-techshop.postman_collection.json and save it to the project root.
+Steps:
+1. Use the Postman MCP to find the collection named "TechShop API Tests"
+   in my workspace and retrieve its full JSON.
+2. Write the JSON to techshop.postman_collection.json in the project root.
+3. Confirm the file was created and show me the path.
 ```
 
 ---
