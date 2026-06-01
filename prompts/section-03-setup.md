@@ -59,13 +59,14 @@ Run each step in the terminal and wait for my confirmation before continuing.
    Confirm the (venv) prefix appears in the terminal prompt.
 
 4. Install all required packages:
-   pip install pytest requests pytest-html python-dotenv
+   pip install pytest requests pytest-html
 
 5. Verify the installation:
    pytest --version
    python3 -c "import requests; print('requests', requests.__version__)"
-   python3 -c "from dotenv import load_dotenv; print('dotenv ok')"
-   All three should print version numbers or confirmation without errors.
+   Both should print version numbers without errors.
+   Note: python-dotenv is not needed — all environment variables are set
+   in the shell profile, not in a .env file.
 
 Run each step one at a time and wait for my confirmation before continuing.
 ```

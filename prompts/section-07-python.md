@@ -25,10 +25,8 @@ Generate a pytest test suite in a file called test_techshop.py
 using the requests library.
 
 Requirements:
-- At the top of the file, load environment variables using python-dotenv:
-    from dotenv import load_dotenv
-    load_dotenv()
 - Set BASE_URL = os.getenv("BASE_URL", "http://localhost:3000")
+  (variables come from the system environment — no .env file, no dotenv import)
 - Write a pytest fixture called auth_token that:
     - reads credentials from environment variables:
         email = os.getenv("TEST_EMAIL")

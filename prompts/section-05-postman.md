@@ -74,39 +74,49 @@ Open the Cursor terminal and paste this prompt into the Cursor chat.
 Have your Postman API key ready (Postman → Settings → API Keys → Generate).
 
 ```
-Help me configure the Postman MCP server securely — the API key must be
-stored in .env only, never written into any config file.
+Help me configure the Postman MCP server securely.
+
+The API key must be stored as a system environment variable in my shell
+profile — NOT in any file inside the project. Cursor indexes project files,
+so any key stored there is visible to the AI. The shell profile is outside
+the project and safe.
 
 1. Ask me for my Postman API key (do not proceed until I provide it)
 
-2. Add the key to the project .env file (create it if it does not exist):
-   POSTMAN_API_KEY=<the key I provided>
-   Confirm .env is listed in .gitignore — if not, add it.
+2. Add the key to my shell profile — outside the project folder:
+   - Mac/Linux (zsh): add this line to ~/.zshrc:
+     export POSTMAN_API_KEY=<the key I provided>
+     Then run: source ~/.zshrc
+   - Mac/Linux (bash): same but in ~/.bashrc and source ~/.bashrc
+   - Windows: tell me to add it via System Properties →
+     Environment Variables → User variables → New
 
-3. Install dotenv-cli globally so the MCP config can load the key from .env:
-   npm install -g dotenv-cli
+3. Confirm the key is set by running in the terminal:
+   echo $POSTMAN_API_KEY
+   It should print the key value.
 
-4. Detect which AI IDE I am using and create the MCP config:
+4. Create the MCP config file — this file contains NO secrets:
    - Cursor: create or update ~/.cursor/mcp.json
    - VS Code: create or update .vscode/mcp.json in the project root
 
-   Write this config (no API key in the file — it loads from .env at startup):
-   For Cursor (~/.cursor/mcp.json):
+   Content (safe to commit — no key inside):
+   For Cursor:
    {
      "mcpServers": {
        "postman": {
-         "command": "dotenv",
-         "args": ["-e", ".env", "--", "npx", "-y", "@postman/mcp-server"]
+         "command": "npx",
+         "args": ["-y", "@postman/mcp-server"],
+         "env": {
+           "POSTMAN_API_KEY": "${POSTMAN_API_KEY}"
+         }
        }
      }
    }
 
-5. Confirm the config file was written and show me the path.
-   Confirm the API key is in .env and NOT in the config file.
+5. Tell me to fully restart Cursor/my IDE so it picks up the
+   updated shell environment
 
-6. Tell me to fully restart Cursor/my IDE for the MCP server to activate
-
-7. After I confirm I have restarted, tell me to verify in two ways:
+6. After I confirm I have restarted, tell me to verify in two ways:
    - Open Cursor Settings → Features → MCP and confirm the Postman server
      shows a green status indicator
    - In this chat, type: what MCP tools do you have available?

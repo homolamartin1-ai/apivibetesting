@@ -2,8 +2,11 @@
   "servers": {
     "postman": {
       "type": "stdio",
-      "command": "dotenv",
-      "args": ["-e", ".env", "--", "npx", "-y", "@postman/mcp-server"]
+      "command": "npx",
+      "args": ["-y", "@postman/mcp-server"],
+      "env": {
+        "POSTMAN_API_KEY": "${POSTMAN_API_KEY}"
+      }
     }
   }
 }
