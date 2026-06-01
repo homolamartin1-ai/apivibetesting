@@ -70,37 +70,26 @@ Update the pm.test assertion to match the spec.
 ## Prompt 4: Set Up Postman MCP Config
 *Used in: Section 5, Clip 2 — "Setting Up the Postman MCP Server"*
 
-Open the Cursor terminal and paste this prompt into the Cursor chat.
-Have your Postman API key ready (Postman → Settings → API Keys → Generate).
+The `POSTMAN_API_KEY` environment variable was already set in Section 3.
+Paste this prompt into the Cursor chat — do not type or paste the key itself.
 
 ```
-Help me configure the Postman MCP server securely.
+Help me configure the Postman MCP server. The API key is already stored
+as a system environment variable called POSTMAN_API_KEY — do not ask me
+for it and do not echo it.
 
-The API key must be stored as a system environment variable in my shell
-profile — NOT in any file inside the project. Cursor indexes project files,
-so any key stored there is visible to the AI. The shell profile is outside
-the project and safe.
+1. Verify the key is available in the environment (without revealing it):
+   Run in the terminal:
+   - Mac/Linux: [ -n "$POSTMAN_API_KEY" ] && echo "Key is set" || echo "Key is NOT set"
+   - Windows PowerShell: if ($env:POSTMAN_API_KEY) { "Key is set" } else { "Key is NOT set" }
+   If the result is "Key is NOT set", stop and tell me to go back to
+   Section 3 and complete the environment variables setup first.
 
-1. Ask me for my Postman API key (do not proceed until I provide it)
-
-2. Add the key to my shell profile — outside the project folder:
-   - Mac/Linux (zsh): add this line to ~/.zshrc:
-     export POSTMAN_API_KEY=<the key I provided>
-     Then run: source ~/.zshrc
-   - Mac/Linux (bash): same but in ~/.bashrc and source ~/.bashrc
-   - Windows: tell me to add it via System Properties →
-     Environment Variables → User variables → New
-
-3. Confirm the key is set by running in the terminal:
-   echo $POSTMAN_API_KEY
-   It should print the key value.
-
-4. Create the MCP config file — this file contains NO secrets:
+2. Detect which AI IDE I am using and create the MCP config file:
    - Cursor: create or update ~/.cursor/mcp.json
    - VS Code: create or update .vscode/mcp.json in the project root
 
-   Content (safe to commit — no key inside):
-   For Cursor:
+   Write this config — no secrets inside, the key is read from the environment:
    {
      "mcpServers": {
        "postman": {
@@ -113,10 +102,11 @@ the project and safe.
      }
    }
 
-5. Tell me to fully restart Cursor/my IDE so it picks up the
-   updated shell environment
+3. Confirm the config file was written and show me the path.
 
-6. After I confirm I have restarted, tell me to verify in two ways:
+4. Tell me to fully restart Cursor/my IDE so it picks up the environment.
+
+5. After I confirm I have restarted, tell me to verify in two ways:
    - Open Cursor Settings → Features → MCP and confirm the Postman server
      shows a green status indicator
    - In this chat, type: what MCP tools do you have available?
