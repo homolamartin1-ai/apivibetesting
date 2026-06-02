@@ -3,10 +3,10 @@
 ## Course reference
 | Prompt | Used in clip |
 |--------|-------------|
-| Prompt 1 — Generate the Full Test Suite | **Section 7, Clip 2** — Cursor Writes the Test Suite |
-| Prompt 2 — Add Parametrize for Boundary Values | **Section 7, Clip 4** — Fixtures, Parametrize, and How Cursor Structures the Code |
-| Prompt 3 — Add pytest.ini Config | **Section 7, Clip 3** — Running pytest and Reading the Output |
-| Prompt 4 — Check Coverage Against the Spec | **Section 7, Clip 4** — Fixtures, Parametrize, and How Cursor Structures the Code |
+| Prompt 1 — Generate the Full Test Suite | **Section 7, Clip 2** — Antigravity IDE Writes the Test Suite |
+| Prompt 2 — Add Parametrize for Boundary Values | **Section 7, Clip 4** — Fixtures, Parametrize, and How Antigravity IDE Structures the Code |
+| Prompt 3 — Fix a Failing Test | **Section 7, Clip 3** — Running pytest and Reading the Output |
+| Prompt 4 — Check Coverage Against the Spec | **Section 7, Clip 4** — Fixtures, Parametrize, and How Antigravity IDE Structures the Code |
 | Prompt 5 — Run pytest and Capture Output | **Section 7, Clip 3** — Running pytest and Reading the Output |
 
 ---
@@ -84,15 +84,23 @@ multiple boundary values (e.g. 0, -1, -100 for a field with minimum 1).
 
 ---
 
-## Prompt 3: Add pytest.ini Config
+## Prompt 3: Fix a Failing Test
 *Used in: Section 7, Clip 3 — "Running pytest and Reading the Output"*
 
 ```
-Create a pytest.ini file in the project root with:
-- testpaths = .
-- addopts = -v --html=pytest-report.html --self-contained-html
+First, check if the TechShop API is running on localhost:3000:
+  curl -s http://localhost:3000/health
+If you get a connection error — start it:
+  cd techshop-api/broken-app && npm start &
+Wait 3 seconds, then verify: curl -s http://localhost:3000/health
+If it still fails, stop and tell me.
 
-This ensures every pytest run automatically generates an HTML report.
+Once the server is confirmed running:
+
+The test [test_name] in test_techshop.py has a failing assertion.
+Read swagger.json to check what status code and response shape the spec
+defines for this scenario, then update the assertion in the test function
+to match the spec exactly.
 ```
 
 ---
