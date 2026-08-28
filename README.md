@@ -93,6 +93,14 @@ Quick version:
 
 ---
 
+## Stuck on a section? Read the guides
+
+Every hands-on section has a step-by-step written guide in [`docs/`](docs/) — the exact
+commands, expected output, and a **"If you're stuck"** troubleshooting block for each. Start at
+[`docs/README.md`](docs/README.md). The three things that fix most problems: the API must be
+running on `localhost:3000`, your environment variables must be set, and your `venv` must be
+active.
+
 ## How to use the prompts
 
 Each file in `prompts/` maps to a course section and contains ready-to-use
