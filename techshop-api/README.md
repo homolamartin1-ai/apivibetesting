@@ -1,6 +1,6 @@
 # TechShop API
 
-REST API for the TechShop e-commerce store. Used in the **Vibetesting in 2026: API Testing with AI Tools** course.
+REST API for the TechShop e-commerce store. Used in the **Agent vibe testing 2026: Automated API Testing with AI Tools** course.
 
 Two versions ship with this repo:
 - `broken-app/` — contains 5 deliberately planted bugs for students to find through testing

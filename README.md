@@ -1,4 +1,4 @@
-# Vibetesting in 2026: API Testing with AI Tools — Course Repository
+# Agent vibe testing 2026: Automated API Testing with AI Tools — Course Repository
 
 Resources for the Udemy course. Everything you need to follow along is in this repo.
 
